@@ -25,7 +25,10 @@ SECRET_KEY = '5#)punzcpve9)@$xd*-ssa6l#!2bd_770+=_fkrk5^+p**^i*2'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    'guimulu.pythonanywhere.com',
+    '127.0.0.1',
+]
 
 
 # Application definition
