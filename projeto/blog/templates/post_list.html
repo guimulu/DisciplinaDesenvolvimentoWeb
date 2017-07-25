@@ -1,23 +1,39 @@
+{% load staticfiles %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Blog do Jajá</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{% static 'css/blog.css' %}">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Chewy">
     <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 <body>
-    <h1 style="text-align:center">Blog do Jajá</h1>
-    {% for post in posts %}
-    <label>Publicado em: {{ post.data_publicacao }}</label>
-    <h1>{{ post.titulo}}</h1>
-    <p>{{ post.texto|linebreaksbr}}
-        {% for comentario in comentarios %}
-            <p>Usuário: {{ post.autor }}</p>
-            <p>{{ post.texto }}</p>
-            <p>Em: {{ post.data_publicacao }}</p>
-        {% endfor %}
-    {% endfor %}
+    <div class="container">
+        <div class="row">
+            <div>
+                <label class="titulo">Blog do Jajá</label>
+            </div>
+            {% for post in posts %}
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <label style="font-size: 30px">{{ post.titulo}}</label>
+                    <label style="float: right">Publicado em: {{ post.data_publicacao }}</label>
+                </div>
+                <div class="panel-body">{{ post.texto|linebreaksbr}}
+                    {% for comentario in comentarios %}
+                        <p>Usuário: {{ post.autor }}</p>
+                        <p>{{ post.texto }}</p>
+                        <p>Em: {{ post.data_publicacao }}</p>
+                    {% endfor %}
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+<label class="titulo" style="color: white">Thanks!</label>
 </body>
 </html>

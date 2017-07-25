@@ -11,5 +11,7 @@ def post_list(request):
     return render(request, "post_list.html", {'posts': posts_publicados})
 
 def coment_list(request):
-    comentarios_publicados = Comentario.objects.filter(data_publicacao__lte=timezone.now()).order_by('data_publicacao')
-    return render(request, "comment_list", {'comentarios': comentarios_publicados})
+    post = Post.objects.get(id=pk)
+    comentarios = Comentario.objects.filter(post=post)
+
+    return render(request, 'coment_list.html', {'post': post, 'comentarios': comentarios})

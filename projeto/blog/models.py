@@ -17,3 +17,6 @@ class Comentario(models.Model):
     data_publicacao = models.DateTimeField(default=timezone.now())
     autor = models.ForeignKey('auth.User')
     post = models.ForeignKey('Post')
+
+    def __str__(self):
+        return (str(self.post.id) + " " + str(self.autor.username) + " " + str(self.data_publicacao))
