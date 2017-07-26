@@ -13,10 +13,10 @@ class Post(models.Model):
 
 
 class Comentario(models.Model):
-    texto = models.TextField()
-    data_publicacao = models.DateTimeField(default=timezone.now())
     autor = models.ForeignKey('auth.User')
-    post = models.ForeignKey('Post')
+    post = models.ForeignKey(Post)
+    data = models.DateTimeField(default=timezone.now)
+    texto = models.TextField()
 
     def __str__(self):
-        return (str(self.post.id) + " " + str(self.autor.username) + " " + str(self.data_publicacao))
+        return (str(self.post.id) + " " + str(self.autor.username) + " " + str(self.data))

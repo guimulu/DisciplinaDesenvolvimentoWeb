@@ -32,3 +32,9 @@ body {
     color: #773333;
     margin-left: calc(50% - 225px);
 }
+
+a:hover{
+    text-decoration: none;
+    color: #67686d;
+}
+a{color: #333}
