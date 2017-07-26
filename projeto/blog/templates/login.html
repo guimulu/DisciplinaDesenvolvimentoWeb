@@ -6,32 +6,32 @@
     <title>Blog do Jajá</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" href="{% static 'css/blog.css' %}">
-    <link rel="stylesheet" href="https://cdn.rawgit.com/Eonasdan/bootstrap-datetimepicker/e8bddc60e73c1ec2475f827be36e1957af72e2ea/build/css/bootstrap-datetimepicker.css" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Chewy">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Bree+Serif">
     <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment-with-locales.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="https://cdn.rawgit.com/Eonasdan/bootstrap-datetimepicker/e8bddc60e73c1ec2475f827be36e1957af72e2ea/src/js/bootstrap-datetimepicker.js"></script>
 </head>
 <body>
     <div class="container">
         <div class="row">
             <div>
-                <label class="titulo"><a href="/">Blog do Jajá</a></label>
+                <label class="titulo"><a href="/login">Blog do Jajá</a></label>
             </div>
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <label style="font-size: 30px;">Novo post</label>
+                    <label style="font-size: 30px;">Login</label>
                 </div>
                 <div class="panel-body">
                     <div class="container">
                         <div class="row">
-                            <div class="col-xs-12">
-                                <form method="POST" id="newPost" class="form-row" style="margin-right: 30px;">
+                            <div class="col-xs-12" style="text-align: center">
+                                <form method="POST" id="login" class="form-row" name="LoginForm" action="" style="margin-right: 30px;">
                                     {% csrf_token %}
-                                    {{ form.as_p }}
-                                    <button type="submit" class="save btn btn-default">Postar</button>
+                                    <label for="username">Username:</label><br>
+                                    <input type="text" id="username" name="username" placeholder="Username"><br><br>
+                                    <label for="password">Password:</label><br>
+                                    <input type="password" id="password" name="password" placeholder="Password" ><br><br>
+                                    <button type="submit" class="save btn btn-default">Logar</button>
                                 </form>
                             </div>
                         </div>
@@ -42,11 +42,3 @@
     </div>
 </body>
 </html>
-
-<script type="text/javascript">
-    $(function () {
-        $('.datetimepicker').datetimepicker({
-            locale: 'pt-br'
-        });
-    });
-</script>

@@ -6,7 +6,8 @@
     <title>Blog do Jajá</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" href="{% static 'css/blog.css' %}">
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Chewy">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Chewy">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Bree+Serif">
     <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
@@ -14,7 +15,7 @@
     <div class="container">
         <div class="row">
             <div>
-                <label class="titulo">Blog do Jajá</label>
+                <label class="titulo"><a href="/">Blog do Jajá</a></label>
             </div>
             <div class="panel panel-default">
                 <div class="panel-heading">
@@ -43,7 +44,7 @@
                     <div class="container">
                         <div class="row">
                             <div class="col-xs-12">
-                                <form method="POST" class="form-row">
+                                <form method="POST" class="form-row" style="margin-right: 30px;">
                                     {% csrf_token %}
                                     {{ form.as_p }}
                                     <button type="submit" class="save btn btn-default">Comentar</button>

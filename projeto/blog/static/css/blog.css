@@ -4,6 +4,7 @@ body {
     background-size: 100%;
     background-attachment: fixed;
     background-position: center;
+    font-family: Chewy;
 }
 
 h1{
@@ -14,12 +15,13 @@ h1{
     color: white;
 }
 
-body {
-    font-family: Chewy;
+.panel-body{
+    background-color: rgba(220, 164, 164, 0.6);
 }
 
 .panel{
-    background-color: rgba(255, 255, 255, 0.7);
+    background-color: rgba(220, 164, 164, 0.0);
+    font-family: Bree Serif;
 }
 
 .panel > .panel-body{
@@ -33,8 +35,26 @@ body {
     margin-left: calc(50% - 225px);
 }
 
+.titulo a{
+    color: #773333;
+}
+
+.titulo a:hover{
+    color: unset;
+}
+
 a:hover{
     text-decoration: none;
     color: #67686d;
 }
 a{color: #333}
+
+textarea{
+    resize: none;
+    width: 100%;
+    height: 102px;
+}
+
+#newPost textarea{
+    height: 306px;
+}
