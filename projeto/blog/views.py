@@ -10,10 +10,15 @@ from django.contrib.auth import login, authenticate
 
 # Create your views here.
 def post_list(request):
-    posts_publicados = Post.objects.order_by('data_publicacao')
+    if request.user.id is None:
+        return  redirect(logar)
+
+    posts_publicados = Post.objects.filter(data_publicacao__lte=timezone.now()).order_by('data_publicacao').reverse()
     return render(request, "post_list.html", {'posts': posts_publicados})
 
 def new_post(request):
+    if request.user.id is None:
+        return  redirect(logar)
     formNew = formNewPost()
     if request.method == "POST":
         formNew = formNewPost(request.POST)
@@ -28,7 +33,8 @@ def new_post(request):
 
 
 def coment_list(request, pk):
-
+    if request.user.id is None:
+        return  redirect(logar)
     if request.method == "POST":
         form = formComentario(request.POST)
         if form.is_valid():
@@ -40,12 +46,17 @@ def coment_list(request, pk):
             return redirect(coment_list, pk=pk)
     else:
         post = Post.objects.get(id=pk)
-        comentarios = Comentario.objects.filter(post=post).order_by('data')
+        post.visualizacoes += 1
+        post.save()
+        comentarios = Comentario.objects.filter(post=post).order_by('data').reverse()
         form = formComentario()
 
     return render(request, 'coment_list.html', {'post': post, 'comentarios': comentarios, 'form': form})
 
 def logar(request):
+    if request.user.id is not None:
+        return  redirect(post_list)
+
     if request.method == "POST":
         username = request.POST['username']
         password = request.POST['password']

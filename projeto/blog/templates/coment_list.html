@@ -19,8 +19,13 @@
             </div>
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <label style="font-size: 30px">{{ post.titulo}}</label>
-                    <label style="float: right">Publicado em: {{ post.data_publicacao }}</label>
+                    <div style="display: inline-block; width: 70%">
+                        <label style="font-size: 30px">{{ post.titulo}}</label>
+                    </div>
+                    <div style="display: inline-block; text-align: right; width: 28%">
+                        <label>Publicado em: {{ post.data_publicacao }}</label><br>
+                        <label>Esse post tem {{ post.visualizacoes}} visualizações!</label>
+                    </div>
                 </div>
                 <div class="panel-body">
                     <p>{{ post.texto|linebreaksbr}}</p>
@@ -31,11 +36,16 @@
                         <div class="panel-body">
                             {% for comentario in comentarios %}
                                 <div>
-                                    <img src="{% static 'img/user.svg' %}" style="width: 50px">
-                                    <label>{{ comentario.autor.username }}</label>
+                                    <div style="display: inline-block">
+                                        <img src="{% static 'img/user.svg' %}" style="width: 65px">
+                                    </div>
+                                    <div style="display: inline-block">
+                                        <label style="margin-bottom: 0;">{{ comentario.autor.username }}</label><br>
+                                        <label style="font-size: 10px; position: absolute">Em: {{ comentario.data }}</label>
+                                    </div>
                                 </div>
-                                <label style="font-size: 10px">Em: {{ comentario.data }}</label>
                                 <p>{{ comentario.texto|linebreaksbr }}</p>
+                                <hr>
                             {% endfor %}
                         </div>
                     </div>
