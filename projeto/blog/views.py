@@ -6,6 +6,7 @@ from .models import Post, Comentario
 from django.utils import timezone
 from .forms import formComentario, formNewPost
 from django.contrib.auth import login, authenticate
+from django.contrib.auth.forms import UserCreationForm
 
 
 # Create your views here.
@@ -66,3 +67,15 @@ def logar(request):
                 login(request, user)
                 return redirect(post_list)
     return render(request, 'login.html', {})
+
+def user_new(request):
+    if request.method == 'POST':
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect(logar)
+        else:
+            return render(request, 'user_new.html', {'form':form})
+    else:
+        form = UserCreationForm()
+        return render(request, 'user_new.html', {'form':form})

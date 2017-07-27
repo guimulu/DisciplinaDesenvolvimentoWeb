@@ -15,24 +15,20 @@
     <div class="container">
         <div class="row">
             <div>
-                <label class="titulo"><a href="/login">Blog do Jajá</a></label>
+                <label class="titulo"><a href="/">Blog do Jajá</a></label>
             </div>
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <label style="font-size: 30px;">Login</label>
+                    <label style="font-size: 30px;">Criar novo usuário</label>
                 </div>
                 <div class="panel-body">
                     <div class="container">
                         <div class="row">
-                            <div class="col-xs-12" style="text-align: center">
-                                <form method="POST" id="login" class="form-row" name="LoginForm" action="" style="margin-right: 30px;">
+                            <div class="col-xs-12">
+                                <form method="POST" id="newPost" class="form-row" style="margin-right: 30px;">
                                     {% csrf_token %}
-                                    <label for="username">Username:</label><br>
-                                    <input type="text" id="username" name="username" placeholder="Username"><br><br>
-                                    <label for="password">Password:</label><br>
-                                    <input type="password" id="password" name="password" placeholder="Password" ><br><br>
-                                    <button type="submit" class="save btn btn-default">Logar</button>
-                                    <button type="submit" class="save btn btn-default"><a href="user_new">Novo Usuário</a></button>
+                                    {{ form.as_p }}
+                                    <button type="submit" class="save btn btn-default">Criar</button>
                                 </form>
                             </div>
                         </div>

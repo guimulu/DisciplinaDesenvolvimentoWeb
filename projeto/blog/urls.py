@@ -7,4 +7,5 @@ urlpatterns = [
     url(r'^post/(?P<pk>[0-9]+)/$', views.coment_list),
     url(r'^new/', views.new_post),
     url(r'^$', views.logar),
+    url(r'user_new/', views.user_new),
 ]
