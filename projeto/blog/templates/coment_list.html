@@ -13,6 +13,9 @@
 </head>
 <body>
     <div class="container">
+        <a href="/logout/" class="sair">
+            <label>Sair</label><span class="glyphicon glyphicon-log-out"></span>
+        </a>
         <div class="row">
             <div>
                 <label class="titulo"><a href="/">Blog do Jajá</a></label>
@@ -21,6 +24,8 @@
                 <div class="panel-heading">
                     <div style="display: inline-block; width: 70%">
                         <label style="font-size: 30px">{{ post.titulo}}</label>
+                        {% if request.user.is_staff %}<a href="/post/{{ post.id }}/edit"><span class="glyphicon glyphicon-edit"></span></a>{% endif %}
+                        {% if request.user.is_staff %}<a href="/post/{{ post.id }}/delete"><span class="glyphicon glyphicon-trash"></span></a>{% endif %}
                     </div>
                     <div style="display: inline-block; text-align: right; width: 28%">
                         <label>Publicado em: {{ post.data_publicacao }}</label><br>

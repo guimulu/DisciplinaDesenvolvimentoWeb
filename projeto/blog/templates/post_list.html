@@ -14,10 +14,13 @@
 </head>
 <body>
     <div class="container">
+        <a href="/logout/" class="sair">
+            <label>Sair</label><span class="glyphicon glyphicon-log-out"></span>
+        </a>
         <div class="row">
             <div>
                 <label class="titulo">Blog do Jajá</label>
-                <label style="font-size: 25px"><a href="new">Novo Post </a></label>
+                {% if request.user.is_staff %}<label style="font-size: 25px"><a href="new">Novo Post </a></label>{% endif %}
             </div>
             {% for post in posts %}
             <div class="panel panel-default">

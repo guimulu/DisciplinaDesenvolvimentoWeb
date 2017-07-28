@@ -59,3 +59,10 @@ textarea{
 #newPost textarea{
     height: 306px;
 }
+
+.sair{
+    position: absolute;
+    right: 0;
+    font-size: 25px;
+    color: #d4d4d4;
+}

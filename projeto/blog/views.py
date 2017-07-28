@@ -5,7 +5,7 @@ from django.shortcuts import render, redirect
 from .models import Post, Comentario
 from django.utils import timezone
 from .forms import formComentario, formNewPost
-from django.contrib.auth import login, authenticate
+from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.forms import UserCreationForm
 
 
@@ -21,16 +21,19 @@ def new_post(request):
     if request.user.id is None:
         return  redirect(logar)
     formNew = formNewPost()
-    if request.method == "POST":
-        formNew = formNewPost(request.POST)
-        if formNew.is_valid():
-            novoPost = formNew.save(commit=False)
-            novoPost.autor = request.user
-            novoPost.data_criacao = timezone.now()
-            novoPost.save()
-            return  redirect(post_list)
+    if request.user.is_staff:
+        if request.method == "POST":
+            formNew = formNewPost(request.POST)
+            if formNew.is_valid():
+                novoPost = formNew.save(commit=False)
+                novoPost.autor = request.user
+                novoPost.data_criacao = timezone.now()
+                novoPost.save()
+                return  redirect(post_list)
+        else:
+            return render(request, "new_post.html", {'form': formNew})
     else:
-        return render(request, "new_post.html", {'form': formNew})
+        return redirect(post_list)
 
 
 def coment_list(request, pk):
@@ -79,3 +82,36 @@ def user_new(request):
     else:
         form = UserCreationForm()
         return render(request, 'user_new.html', {'form':form})
+
+def edit_post(request, pk):
+    if request.user.id is None:
+        return  redirect(logar)
+    post = Post.objects.get(id=pk)
+    if request.user.is_staff:
+        if request.method == 'POST':
+            formEdit = formNewPost(request.POST, instance=post)
+            if formEdit.is_valid():
+                editPost = formEdit.save(commit=False)
+                editPost.autor = request.user
+                editPost.data_criacao = timezone.now()
+                editPost.save()
+                return render(request, 'coment_list.html', {'post': post})
+        else:
+            newPost = formNewPost(instance=post)
+            return render(request, "new_post.html", {'form': newPost})
+    else:
+        return render(request, 'coment_list.html', {'post': post})
+
+def delete_post(request, pk):
+    if request.user.id is None:
+        return  redirect(logar)
+    post = Post.objects.get(id=pk)
+    if request.user.is_staff:
+        post.delete()
+        return redirect(post_list)
+    else:
+        return render(request, 'coment_list.html', {'post': post})
+
+def logout_user(request):
+    logout(request)
+    return redirect(logar)
